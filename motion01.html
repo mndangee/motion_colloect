@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>motion01</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="content-wrap">
+        <style>
+            /* 버튼 초기화 */
+            button {
+                padding: 0;
+                padding-top: 0px;
+                padding-right: 0px;
+                padding-bottom: 0px;
+                padding-left: 0px;
+                margin: 0;
+                vertical-align: top;
+                cursor: pointer;
+                background-color: transparent;
+                border: 0;
+            }
+
+            .btn {
+                overflow: hidden;
+                position: relative;
+                min-width: 100px;
+                border: 1px solid #fff;
+                text-align: center;
+                font-weight: 400;
+                height: 40px;
+                line-height: 1.4rem;
+                padding: 3px 15px;
+                background-color: #fff;
+
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .btn.btn-black {
+                border-color: #000;
+                background-color: #000;
+                color: #fff;
+            }
+            
+            .cont-margin {
+                padding: 30px;
+            }
+
+            .cont-margin img {
+                width: 100%;
+                height: 50%;
+            }
+
+            .cont-margin .edt-item {
+                width: 30%; 
+                display: inline-block; 
+                position: relative;
+            }
+
+            .cont-margin .edt-item ~ .edt-item {
+                margin-top: 5px;
+            }
+
+            .video-box .btn-video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: block;
+                width: 100%;
+                height: 100%;
+                z-index: 4;
+            }
+
+            .cont-margin .video-box .video-wrap {
+                position: absolute;
+                background: #000;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 4;
+            }
+
+            .cont-margin .video-wrap .vod {
+                width: 100%;
+                height: 100%; 
+                object-fit: cover;
+            }
+
+            .cont-margin .text {
+                padding: 30px;
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                color: #fff; 
+                background-color: #000; 
+                display: block;
+            }
+            
+            /* 모션 */
+            .cont-margin .edt-img.motion { 
+                animation: reverse_frames 2s forwards; 
+            }
+            .cont-margin .edt-img.motion img, .cont-margin .edt-item.motion video {
+                transform:rotateX(180deg)
+            }
+           
+            @keyframes reverse_frames {
+                from {
+                    opacity : 0.5;
+                }
+                to {
+                    opacity: 1;
+                    transform: rotateX(-180deg);
+                }
+            }
+        </style>
+        <div class="cont-margin">
+            <button type="button" class="btn btn-black"><span class="inner-text">클릭</span></button>
+            <div class="content-wrap">
+                <div class="edt-item edt-img"><img src="https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210629/m_instantpost_img01.png" alt=""></div>
+                <div class="edt-item edt-img"><img src="https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210629/m_instantpost_img02.png" alt=""></div>
+                <div class="edt-item edt-img"><img src="https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210629/m_instantpost_img03.png" alt=""></div>
+                <div class="edt-item edt-video video-box">
+                    <div class="edt-img">
+                        <img src="https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210614/m_instantpost_img03.png" alt="temp">
+                    </div>
+                    <span class="text">비디오 위치</span>
+                    <button type="button" class="btn-video" title="비디오 재생" data-video-url="https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210705/m_cmp_video04.mp4"></button>
+                </div>
+                <div class="edt-item edt-img"><img src="https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210614/m_instantpost_img01.png" alt=""></div>
+                <div class="edt-item edt-img"><img src="https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210614/m_instantpost_img02.png" alt=""></div>
+            </div>
+        </div>
+        <script>
+            $(function() {
+                $('.btn').on('click', function(){
+                    const imageList = [
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20211108/m_instantpost_img01.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20211108/m_instantpost_img02.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20211108/m_instantpost_img03.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20211005/m_instantpost_img01.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20211005/m_instantpost_img02.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20211005/m_instantpost_img03.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20220117/m_instantpost_img01.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20220117/m_instantpost_img02.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20220117/m_instantpost_img03.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20220103/m_instantpost_img01.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20220103/m_instantpost_img02.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20220103/m_instantpost_img03.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210511/m_instantpost_img01.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210511/m_instantpost_img02.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210511/m_instantpost_img03.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210412/m_instantpost_img01.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210412/m_instantpost_img02.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210412/m_instantpost_img03.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210712/m_instantpost_img01.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210712/m_instantpost_img02.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210712/m_instantpost_img03.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20211025/m_instantpost_img01.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20211025/m_instantpost_img02.png',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20211025/m_instantpost_img03.png'
+                    ];
+
+                    const vedioList = [
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210517/m_cmp_video00_n.mp4',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210517/m_cmp_video01_n.mp4',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210517/m_cmp_video02_n.mp4',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210517/m_cmp_video03_n.mp4',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210517/m_cmp_video04_n.mp4',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210427/m_cmp_video00.mp4',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210427/m_cmp_video01.mp4',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210427/m_cmp_video02.mp4',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210427/m_cmp_video03.mp4',
+                        'https://cdn.eqlstore.com/display/html/DSP_CTGRY/20210427/m_cmp_video04.mp4'
+                    ]
+
+                    const changeImg = [];
+                    const changeVedio = Math.floor(Math.random() * vedioList.length);
+
+                    while(imageList.length > 6) {
+                        var randNum = imageList.splice(Math.floor(Math.random() * imageList.length), 1)[0]
+                        changeImg.push(randNum);
+                    }
+
+                    $('.btn-video').data("video-url",vedioList[changeVedio]);
+                    imgMotion(changeImg);
+                });
+                
+                $('.btn-video').on('click', function () {
+                    var videoData, videoType, videoUrl;
+                    videoData = $(this).data();
+                    videoUrl = videoData.videoUrl;
+                
+                    setVideoTag($(this).closest('.video-box'), videoUrl);
+                });
+            })
+
+            function imgMotion(changeImg) {
+                $('.video-wrap').remove();
+                $('.content-wrap .edt-img').removeClass('motion');
+
+                $('.content-wrap .edt-img').each(function(i){
+                    if(!$(this).eq(i).hasClass('motion')) {
+                        var current = $(this);
+                        setTimeout(function() {
+                            current.find('img').attr("src", changeImg[i]);
+                            current.addClass('motion');
+                        },100*i)
+                    }
+                });
+            }
+
+            function setVideoTag(target, videoUrl) {
+                var playerWrapper, player;
+                if (target.is('video')) {
+                    return;
+                }
+            
+                playerWrapper = $('<div>', {
+                    class: 'video-wrap',
+                });
+                player = `<video class=vod playsinline autoplay loop muted><source src="${videoUrl}" type="video/mp4"></video>`;
+
+                playerWrapper.append(player);
+                playerWrapper.appendTo(target);
+            }
+        </script>
+    </div>
+</body>
+</html>
